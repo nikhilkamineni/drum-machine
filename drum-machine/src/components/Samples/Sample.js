@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Samp = styled.div`
-  width: 20%;
+  width: 100px;
   height: 100px;
-  border: 1px solid black;
   background: #757575;
-  border-radius: 5px;
   margin: 0 auto;
+  &:hover {
+    cursor: pointer;
+    background-color: #616161;
+  }
 `;
 
 class Sample extends React.Component {

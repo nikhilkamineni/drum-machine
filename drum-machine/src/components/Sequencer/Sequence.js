@@ -9,9 +9,10 @@ const Led = styled.div`
   height: 60px;
   width: 5%;
   margin: 0 auto;
-  border: 1px solid black;
-  border-radius: 5px;
   background: ${props => (props.on ? '#4fc3f7' : '#757575')};
+  &:hover {
+    background-color: ${props => (props.on ? '#5fd3f7' : '#616161')};
+  }
 `;
 
 class Timeline extends React.Component {

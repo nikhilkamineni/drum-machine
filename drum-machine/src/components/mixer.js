@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+// Mixer Styles
 const MixerStyled = styled.div`
+  color: #999999;
   input[type='range'] {
     -webkit-appearance: none;
-    background-color: white;
+    background-color: #616161;
+    margin-bottom: 15px;
   }
 
   input[type='range']:focus {
@@ -16,22 +19,20 @@ const MixerStyled = styled.div`
     height: 5px;
     cursor: pointer;
     animate: 0.2s;
-    border-radius: 5px;
-    border: 1px solid #000000;
   }
 
   input[type='range']::-webkit-slider-thumb {
-    border: 1px solid #000000;
     height: 20px;
     width: 10px;
     border-radius: 0px;
-    background: #00FF00;
+    background: #11BB11;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -8px;
   }
 `;
 
+// Mixer Component
 class Mixer extends Component {
   render() {
     return (

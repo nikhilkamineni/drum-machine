@@ -4,105 +4,66 @@ import styled from 'styled-components';
 const TransportContainer = styled.div`
   width: 100%;
   height: 50px;
-  background: #616161;
-  border: 1px solid black;
-  border-radius: 5px;
+  background: #444444;
   margin-top: 20px;
   display: flex;
   align-items: center;
-  color: #202020;
+  color: #AAAAAA;
 `;
 
-const PlayButton = styled.div`
+const ButtonStyled = styled.div`
+  color: #333333;
   height: 30px;
-  background: white;
-  border: 1px solid black;
-  border-radius: 5px;
+  background: #AAAAAA;
   padding: 4px 15px;
   margin-left: 10px;
   font-weight: bold;
   &:hover {
     cursor: pointer;
-  }
-`;
-
-const PauseButton = styled.div`
-  height: 30px;
-  background: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 4px 15px;
-  margin-left: 10px;
-  font-weight: bold;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const StopButton = styled.div`
-  height: 30px;
-  background: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 4px 15px;
-  margin-left: 10px;
-  font-weight: bold;
-  &:hover {
-    cursor: pointer;
+    background-color: #888888;
   }
 `;
 
 const BPMLabel = styled.div`
   height: 30px;
-  border-radius: 5px;
   padding: 4px;
-  margin-left: 10px;
+  margin-left: 30px;
   font-weight: bold;
 `;
 
 const BPM = styled.input`
   height: 30px;
-  background: white;
-  border: 1px solid black;
-  border-radius: 5px;
+  background: #CCCCCC;
   padding: 4px;
-  margin-left: 10px;
+  margin-right: 30px;
   font-weight: bold;
-  max-width: 70px;
+  max-width: 50px;
 `;
 
 const PadsToggle = styled.div`
+  color: #333333;
   height: 30px;
-  background: white;
-  border: 1px solid black;
-  border-radius: 5px;
+  background: #AAAAAA;
   padding: 4px 15px;
   margin-left: 100px;
   font-weight: bold;
   &:hover {
     cursor: pointer;
+    background-color: #888888;
   }
 `;
 
-const BeatIndicator = styled.div`
-  height: 30px;
-  border-radius: 5px;
-  padding: 4px;
-  margin-left: 10px;
-  font-weight: bold;
-`;
 
 class Transport extends React.Component {
   render() {
     return (
       <TransportContainer>
-        <PlayButton onClick={this.props.play}>PLAY</PlayButton>
-        <PauseButton onClick={this.props.pause}>PAUSE</PauseButton>
-        <StopButton onClick={this.props.stop}>STOP</StopButton>
+        <ButtonStyled onClick={this.props.play}>PLAY</ButtonStyled>
+        <ButtonStyled onClick={this.props.pause}>PAUSE</ButtonStyled>
+        <ButtonStyled onClick={this.props.stop}>STOP</ButtonStyled>
         <BPMLabel>BPM</BPMLabel>
         <BPM defaultValue="40" onChange={this.props.changeBPM}/>
-        <PlayButton onClick={() => this.props.clearSequences()}>CLEAR</PlayButton>
-        <BeatIndicator>BEAT: {this.props.beat + 1}</BeatIndicator>
+        <ButtonStyled onClick={() => this.props.clearSequences()}>CLEAR</ButtonStyled>
         <PadsToggle onClick={this.props.togglePads}>CONTROLS</PadsToggle>
       </TransportContainer>
     );

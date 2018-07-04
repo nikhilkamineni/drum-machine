@@ -5,7 +5,17 @@ import SampleContainer from './Samples/SampleContainer';
 import Transport from './/Transport/Transport';
 import Sequencer from './Sequencer/Sequencer';
 import Mixer from './mixer';
-import { kick, snare, hhopen, hhclosed, tom1, tom2, aux1, aux2, generateIR } from '../sounds';
+import {
+  kick,
+  snare,
+  hhopen,
+  hhclosed,
+  tom1,
+  tom2,
+  aux1,
+  aux2,
+  generateIR
+} from '../sounds';
 import './App.css';
 
 /* MAIN AUDIO CONTEXT */
@@ -14,16 +24,16 @@ const context = new AudioContext();
 /* MASTER GAIN NODE */
 const masterGain = context.createGain();
 masterGain.connect(context.destination);
-masterGain.gain.value = 0.9;    // Master Volume Control
+masterGain.gain.value = 0.9; // Master Volume Control
 
 /* GAIN NODES FOR EACH DRUM PART */
-const kickGain = context.createGain()
-const snareGain = context.createGain()
-const tom1Gain = context.createGain()
-const tom2Gain = context.createGain()
-const hhOpenGain = context.createGain()
+const kickGain = context.createGain();
+const snareGain = context.createGain();
+const tom1Gain = context.createGain();
+const tom2Gain = context.createGain();
+const hhOpenGain = context.createGain();
 const hhClosedGain = context.createGain();
-const aux1Gain = context.createGain()
+const aux1Gain = context.createGain();
 const aux2Gain = context.createGain();
 
 const gains = {
@@ -50,9 +60,9 @@ delayInputGain.connect(delay);
 delayFeedback.connect(delay);
 delay.connect(delayFeedback);
 /* Delay FX Paramters */
-delay.delayTime.value = 1;         // Delay Time
-delayInputGain.gain.value = 0.5;   // Delay Volume
-delayFeedback.gain.value = 0.5;    // Delay Feedback
+delay.delayTime.value = 1; // Delay Time
+delayInputGain.gain.value = 0.5; // Delay Volume
+delayFeedback.gain.value = 0.5; // Delay Feedback
 
 /* SETUP REVERB */
 const irBuffer = generateIR(context, 3, 2.5);
@@ -61,7 +71,7 @@ const reverbInputGain = context.createGain();
 reverb.buffer = irBuffer;
 reverbInputGain.connect(reverb);
 reverb.connect(masterGain);
-reverbInputGain.gain.value = 0.5;  // Reverb Volume
+reverbInputGain.gain.value = 0.5; // Reverb Volume
 
 /* CONNECT DRUM SOUNDS TO REVERB */
 // kickGain.connect(delayInputGain);
@@ -83,39 +93,37 @@ tom2Gain.connect(delayInputGain);
 aux1Gain.connect(delayInputGain);
 aux2Gain.connect(delayInputGain);
 
-
 let timer;
-let totalRewind = 0;
 
 // App Component
 class App extends Component {
   state = {
     isPlaying: false,
     currentBeat: 0,
-    bpm: 100,
+    bpm: 40,
     sequenceLength: 16,
     tracks: 8,
     showPads: true,
     wasStopped: true,
-    clear: false,
+    clear: false
   };
 
   componentDidMount() {
     context.suspend();
-    document.addEventListener("keydown", this.keyPressHandler, false);
+    document.addEventListener('keydown', this.keyPressHandler, false);
   }
 
   clearSequences = () => {
     this.setState({
-      clear: true,
+      clear: true
     });
-  }
+  };
 
   unsetClear = () => {
     this.setState({
-      clear: false,
-    })
-  }
+      clear: false
+    });
+  };
 
   togglePads = () => {
     this.setState({
@@ -132,31 +140,34 @@ class App extends Component {
   }
 
   play() {
-    context.resume();
-    const { bpm, sequenceLength } = this.state;
-    let timeSinceLastStop = 0;
+    if (!this.state.isPlaying) {
+      context.resume();
+      const { bpm, sequenceLength } = this.state;
+      let timeSinceLastStop = 0;
 
-    if (this.state.wasStopped) {
+      if (this.state.wasStopped) {
+        this.setState({
+          wasStopped: false
+        });
 
-      this.setState({
-
-        wasStopped: false
-
-      });
-
-      timeSinceLastStop = context.currentTime;
-
+        timeSinceLastStop = context.currentTime;
+      }
+      timer = setInterval(() => {
+        // this.setState({ currentBeat: this.state.currentBeat + 1 });
+        let nextBeat =
+          Math.floor(
+            ((((context.currentTime - timeSinceLastStop) * bpm) / 60) *
+              sequenceLength) /
+              4
+          ) % sequenceLength;
+        if (nextBeat !== this.state.currentBeat) {
+          this.setState({
+            isPlaying: true,
+            currentBeat: nextBeat
+          });
+        }
+      }, 1);
     }
-    timer = setInterval(() => {
-      // this.setState({ currentBeat: this.state.currentBeat + 1 });
-      let nextBeat = (Math.floor((context.currentTime - timeSinceLastStop) * bpm/60*sequenceLength/4) % sequenceLength);
-      if (nextBeat !== this.state.currentBeat) {
-      this.setState({
-        isPlaying: true,
-        currentBeat: nextBeat,
-      });
-    }
-  }, 1);
   }
 
   pause() {
@@ -168,22 +179,19 @@ class App extends Component {
   }
 
   stop() {
-
     clearInterval(timer);
     this.setState({
       isPlaying: false,
       wasStopped: true
     });
     context.suspend();
-    totalRewind = context.currentTime;
-
   }
 
   changeBPM = value => {
     this.setState({
       bpm: value.target.value
     });
-    console.log("Changed bpm to " + value.target.value);
+    console.log('Changed bpm to ' + value.target.value);
   };
 
   changeSequenceLength = value => {
@@ -192,57 +200,57 @@ class App extends Component {
     });
   };
 
-  keyPressHandler = (event) => {
+  keyPressHandler = event => {
     const sounds = {
-      kick, snare, hhopen, hhclosed, tom1, tom2, aux1, aux2
-    }
+      kick,
+      snare,
+      hhopen,
+      hhclosed,
+      tom1,
+      tom2,
+      aux1,
+      aux2
+    };
     const keys = {
-      'q': 'kick',
-      'w': 'snare',
-      'e': 'hhopen',
-      'r': 'hhclosed',
-      'a': 'tom1',
-      's': 'tom2',
-      'd': 'aux1',
-      'f': 'aux2',
-      }
+      q: 'kick',
+      w: 'snare',
+      e: 'hhopen',
+      r: 'hhclosed',
+      a: 'tom1',
+      s: 'tom2',
+      d: 'aux1',
+      f: 'aux2'
+    };
     if (event.keyCode === 32) {
       if (!this.state.playing && this.state.wasStopped) {
         this.play();
-      }
-      else {
+      } else {
         this.stop();
       }
       event.preventDefault();
-    }
-    else if (Object.keys(keys).includes(event.key)) {
+    } else if (Object.keys(keys).includes(event.key)) {
       sounds[keys[event.key]](context, gains[keys[event.key]]);
-      console.log(event.key)
     }
-  }
+  };
 
-  mixerHandler = (event) => {
+  mixerHandler = event => {
     const name = event.target.name;
     let value = event.target.value / 100;
 
-    if (name === "DelayVolume") {
+    if (name === 'DelayVolume') {
       delayInputGain.gain.setValueAtTime(value, context.currentTime);
-    }
-    else if (name === "DelayTime") {
+    } else if (name === 'DelayTime') {
       value *= MAX_DELAY_TIME;
       // delay.delayTime.setValueAtTime(value, context.currentTime)
       delay.delayTime.linearRampToValueAtTime(value, context.currentTime + 0.1);
-    }
-    else if (name === "DelayVolume"){
+    } else if (name === 'DelayVolume') {
       delayFeedback.gain.setValueAtTime(value, context.currentTime);
-    }
-    else if (name === 'ReverbVolume') {
+    } else if (name === 'ReverbVolume') {
       reverbInputGain.gain.setValueAtTime(value, context.currentTime);
+    } else {
+      console.log('Error in mixerHandler');
     }
-    else {
-      console.log('Error in mixerHandler')
-    }
-  }
+  };
 
   render() {
     return (
@@ -252,20 +260,28 @@ class App extends Component {
           changeBPM={this.changeBPM}
           play={() => this.play()}
           pause={() => this.pause()}
-          stop = {() => this.stop()}
+          stop={() => this.stop()}
           clearSequences={this.clearSequences}
           time={context.currentTime}
           beat={this.state.currentBeat}
           togglePads={this.togglePads}
           changeSequenceLength={this.changeSequenceLength}
         />
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-around'
+          }}
+        >
           <SampleContainer
             context={context}
             gains={gains}
             show={this.state.showPads}
           />
-          {this.state.showPads ?  <Mixer mixerHandler={this.mixerHandler}/> : null}
+          {this.state.showPads ? (
+            <Mixer mixerHandler={this.mixerHandler} />
+          ) : null}
         </div>
         <Sequencer
           clear={this.state.clear}
