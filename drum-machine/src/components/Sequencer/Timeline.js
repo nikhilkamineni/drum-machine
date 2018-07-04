@@ -3,10 +3,12 @@ import styled from 'styled-components';
 
 const LedContainer = styled.div`
   display: flex;
+  padding-left: 15px;
+  padding-top: 5px;
 `;
 
 const Led = styled.div`
-  height: 20px;
+  height: 10px;
   width: 50px;
   background: ${props => (props.active ? '#00BB00' : '#333333')};
   margin: 0 5px;

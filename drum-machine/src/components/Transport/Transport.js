@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TransportContainer = styled.div`
-  width: 80%;
+  width: 950px;
   height: 50px;
   background: #444444;
   margin-top: 20px;

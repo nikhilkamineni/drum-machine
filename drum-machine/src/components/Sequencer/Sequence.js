@@ -5,6 +5,7 @@ const LedContainer = styled.div`
   display: flex;
 `;
 
+// border: 5px solid ${props => colors[props.name]};
 const Led = styled.div`
   height: 50px;
   width: 50px;
@@ -54,7 +55,7 @@ class Timeline extends React.Component {
     return (
       <LedContainer>
         {this.state.noteOn.map((note, index) => {
-          return <Led key={index} on={this.state.noteOn[index]} onClick={() => this.handleClick(index)} />
+          return <Led key={index} on={this.state.noteOn[index]} onClick={() => this.handleClick(index)} name={this.props.name} />
         })}
       </LedContainer>
     );

@@ -215,6 +215,7 @@ class App extends Component {
       aux1,
       aux2
     };
+
     const keys = {
       q: 'kick',
       w: 'snare',
@@ -277,15 +278,15 @@ class App extends Component {
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
           }}
         >
+          {this.state.showPads ? (
           <SampleContainer
             context={context}
             gains={gains}
-            show={this.state.showPads}
             style={{marginRight: '20px'}}
           />
+          ) : null}
           {this.state.showPads ? (
             <Mixer mixerHandler={this.mixerHandler} />
           ) : null}
