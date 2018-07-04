@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Samp = styled.div`
+const Pad = styled.div`
   width: 100px;
   height: 100px;
   background: #757575;
+  border: 5px solid #333333;
   margin: 0 auto;
   &:hover {
     cursor: pointer;
@@ -18,7 +19,7 @@ class Sample extends React.Component {
   }
 
   render() {
-    return <Samp onClick={() => this.clickHandler()} />;
+    return <Pad onClick={() => this.clickHandler()} />;
   }
 }
 

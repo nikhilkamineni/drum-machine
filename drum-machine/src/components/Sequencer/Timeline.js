@@ -7,9 +7,9 @@ const LedContainer = styled.div`
 
 const Led = styled.div`
   height: 20px;
-  width: 5%;
-  background: ${props => (props.active ? '#00BB00' : '#616161')};
-  margin: 0 auto;
+  width: 50px;
+  background: ${props => (props.active ? '#00BB00' : '#333333')};
+  margin: 0 5px;
 `;
 
 class Timeline extends React.Component {

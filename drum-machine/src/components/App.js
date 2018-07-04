@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
-
+import styled from 'styled-components';
 import SampleContainer from './Samples/SampleContainer';
 import Transport from './/Transport/Transport';
 import Sequencer from './Sequencer/Sequencer';
@@ -94,6 +93,11 @@ aux1Gain.connect(delayInputGain);
 aux2Gain.connect(delayInputGain);
 
 let timer;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 // App Component
 class App extends Component {
@@ -221,6 +225,7 @@ class App extends Component {
       d: 'aux1',
       f: 'aux2'
     };
+
     if (event.keyCode === 32) {
       if (!this.state.playing && this.state.wasStopped) {
         this.play();
@@ -266,18 +271,20 @@ class App extends Component {
           beat={this.state.currentBeat}
           togglePads={this.togglePads}
           changeSequenceLength={this.changeSequenceLength}
+          style={{marginBottom: '10px'}}
         />
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-around'
+            justifyContent: 'center'
           }}
         >
           <SampleContainer
             context={context}
             gains={gains}
             show={this.state.showPads}
+            style={{marginRight: '20px'}}
           />
           {this.state.showPads ? (
             <Mixer mixerHandler={this.mixerHandler} />

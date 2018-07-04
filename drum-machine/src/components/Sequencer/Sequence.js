@@ -6,11 +6,12 @@ const LedContainer = styled.div`
 `;
 
 const Led = styled.div`
-  height: 60px;
-  width: 5%;
-  margin: 0 auto;
-  background: ${props => (props.on ? '#4fc3f7' : '#757575')};
+  height: 50px;
+  width: 50px;
+  margin: 0 5px;
+  background: ${props => (props.on ? '#4AA0F1' : '#757575')};
   &:hover {
+    cursor: pointer;
     background-color: ${props => (props.on ? '#5fd3f7' : '#616161')};
   }
 `;

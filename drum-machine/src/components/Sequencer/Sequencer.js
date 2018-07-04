@@ -10,7 +10,6 @@ const sounds = {
 }
 
 const LedSpacer = styled.div`
-  width: 100%;
   height: 10px;
 `;
 
@@ -25,10 +24,10 @@ class Sequencer extends React.Component {
   render() {
     return (
       <Container>
-        <LedSpacer />
         <Timeline
           currentBeat={this.props.currentBeat}
           sequenceLength={this.props.sequenceLength}
+          style={{width: '1000px'}}
         />
         <LedSpacer />
         {Object.keys(sounds).map((name, index) => {
