@@ -11,7 +11,7 @@ const Led = styled.div`
   height: 10px;
   width: 50px;
   background: ${props => (props.active ? '#00BB00' : '#999999')};
-  margin: 0 5px;
+  margin: 0 3px;
 `;
 
 class Timeline extends React.Component {

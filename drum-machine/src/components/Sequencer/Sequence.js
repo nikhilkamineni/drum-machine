@@ -9,7 +9,7 @@ const LedContainer = styled.div`
 const Led = styled.div`
   height: 50px;
   width: 50px;
-  margin: 0 5px;
+  margin: 0 3px;
   background: ${props => (props.on ? '#4AA0F1' : '#888888')};
   &:hover {
     cursor: pointer;
