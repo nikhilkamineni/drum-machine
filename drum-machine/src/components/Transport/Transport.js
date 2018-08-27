@@ -21,7 +21,7 @@ const ButtonStyled = styled.div`
   margin-left: 10px;
   &:hover {
     cursor: pointer;
-    background-color: #999999;
+    color: #BB3333;
   }
 `;
 
@@ -65,7 +65,7 @@ const PadsToggle = styled.div`
   margin-left: 100px;
   &:hover {
     cursor: pointer;
-    background-color: #999999;
+    color: #BB3333;
   }
 `;
 
