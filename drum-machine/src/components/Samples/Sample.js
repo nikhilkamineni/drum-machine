@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const colors = {
-  kick: ['#660000', '#550000'],
-  snare: ['#000066', '#000055'],
-  hhopen: ['#555500', '#444400'],
-  hhclosed: ['#555500', '#444400'],
-  tom1: ['#550055', '#440044'],
-  tom2: ['#550055', '#440044'],
-  aux1: ['#005500', '#004400'],
-  aux2: ['#005500', '#004400'],
+  kick: ['#BB6666', '#AA5555'],
+  snare: ['#6666BB', '#5555AA'],
+  hhopen: ['#BBBB66', '#AAAA55'],
+  hhclosed: ['#BBBB66', '#AAAA55'],
+  tom1: ['#BB66BB', '#AA55AA'],
+  tom2: ['#BB66BB', '#AA55AA'],
+  aux1: ['#55BB66', '#55AA55'],
+  aux2: ['#55BB66', '#55AA55'],
 };
 
 const Pad = styled.div`
@@ -18,7 +18,7 @@ const Pad = styled.div`
   width: 70px;
   height: 70px;
   background: ${props => colors[props.name][0]};
-  border: 5px solid #333333;
+  border: 5px solid #AAAAAA;
   margin: 0 auto;
   &:hover {
     cursor: pointer;

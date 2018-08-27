@@ -10,7 +10,7 @@ const LedContainer = styled.div`
 const Led = styled.div`
   height: 10px;
   width: 50px;
-  background: ${props => (props.active ? '#00BB00' : '#333333')};
+  background: ${props => (props.active ? '#00BB00' : '#999999')};
   margin: 0 5px;
 `;
 

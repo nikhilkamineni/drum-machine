@@ -10,7 +10,7 @@ const Led = styled.div`
   height: 50px;
   width: 50px;
   margin: 0 5px;
-  background: ${props => (props.on ? '#4AA0F1' : '#757575')};
+  background: ${props => (props.on ? '#4AA0F1' : '#888888')};
   &:hover {
     cursor: pointer;
     background-color: ${props => (props.on ? '#5fd3f7' : '#616161')};

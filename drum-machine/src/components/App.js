@@ -156,8 +156,8 @@ class App extends Component {
 
         timeSinceLastStop = context.currentTime;
       }
+
       timer = setInterval(() => {
-        // this.setState({ currentBeat: this.state.currentBeat + 1 });
         let nextBeat =
           Math.floor(
             ((((context.currentTime - timeSinceLastStop) * bpm) / 60) *
@@ -179,7 +179,7 @@ class App extends Component {
       isPlaying: false
     });
     clearInterval(timer);
-    context.suspend();
+    // context.suspend();
   }
 
   stop() {
@@ -228,11 +228,7 @@ class App extends Component {
     };
 
     if (event.keyCode === 32) {
-      if (!this.state.playing && this.state.wasStopped) {
-        this.play();
-      } else {
-        this.stop();
-      }
+      (!this.state.playing && this.state.wasStopped) ? this.play() : this.stop();
       event.preventDefault();
     } else if (Object.keys(keys).includes(event.key)) {
       sounds[keys[event.key]](context, gains[keys[event.key]]);
@@ -261,6 +257,7 @@ class App extends Component {
   render() {
     return (
       <Container>
+        <h1>The Nebulous Groove Generator</h1>
         <Transport
           context={context}
           changeBPM={this.changeBPM}

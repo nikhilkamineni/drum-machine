@@ -25,14 +25,14 @@ const sounds = {
 };
 
 const colors = {
-  kick: '#660000',
-  snare: '#000066',
-  hhopen: '#555500',
-  hhclosed: '#555500',
-  tom1: '#550055',
-  tom2: '#550055',
-  aux1: '#005500',
-  aux2: '#005500'
+  kick: '#BB6666',
+  snare: '#6666BB',
+  hhopen: '#BBBB66',
+  hhclosed: '#BBBB66',
+  tom1: '#BB66BB',
+  tom2: '#BB66BB',
+  aux1: '#55BB66',
+  aux2: '#55BB66'
 };
 
 class Sequencer extends React.Component {

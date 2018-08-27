@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 // Mixer Styles
 const MixerStyled = styled.div`
-  color: #999999;
+  color: #222222;
   input[type='range'] {
     -webkit-appearance: none;
-    background-color: #616161;
+    background-color: #888888;
     margin-bottom: 15px;
   }
 
