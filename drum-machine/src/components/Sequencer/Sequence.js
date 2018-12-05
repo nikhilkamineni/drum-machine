@@ -18,9 +18,12 @@ const Led = styled.div`
 `;
 
 class Timeline extends React.Component {
-    state = {
+  constructor (props) {
+    super(props);
+    this.state = {
       noteOn: []
     };
+  }
 
   componentDidUpdate() {
     if (this.state.noteOn[this.props.currentBeat]) {
@@ -29,7 +32,7 @@ class Timeline extends React.Component {
     if (this.props.clear) {
       const noteOn = [...Array(this.props.sequenceLength).keys()].fill(false);
       this.setState({
-        noteOn,
+        noteOn
       });
       this.props.unsetClear();
     }
@@ -37,17 +40,19 @@ class Timeline extends React.Component {
 
   componentDidMount() {
     // const noteOn = [...Array(this.props.sequenceLength).keys()].fill(false);
-    const noteOn = [...Array(this.props.sequenceLength).keys()].map(el => Math.random() > 0.3 ? false : true);
+    const noteOn = [...Array(this.props.sequenceLength).keys()].map(
+      el => (Math.random() > 0.3 ? false : true)
+    );
     this.setState({
-      noteOn,
-    })
+      noteOn
+    });
   }
 
   handleClick = index => {
     let { noteOn } = this.state;
     noteOn[index] = !noteOn[index];
     this.setState({
-      noteOn,
+      noteOn
     });
   };
 
@@ -55,7 +60,14 @@ class Timeline extends React.Component {
     return (
       <LedContainer>
         {this.state.noteOn.map((note, index) => {
-          return <Led key={index} on={this.state.noteOn[index]} onClick={() => this.handleClick(index)} name={this.props.name} />
+          return (
+            <Led
+              key={index}
+              on={this.state.noteOn[index]}
+              onClick={() => this.handleClick(index)}
+              name={this.props.name}
+            />
+          );
         })}
       </LedContainer>
     );

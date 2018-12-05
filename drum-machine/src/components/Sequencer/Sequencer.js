@@ -1,7 +1,7 @@
 import React from 'react';
-import Sequence from './Sequence'; // eslint-disable-line no-unused-vars
-import Timeline from './Timeline'; // eslint-disable-line no-unused-vars
-import styled from 'styled-components'; // eslint-disable-line no-unused-vars
+import Sequence from './Sequence'; // eslint-disable-line
+import Timeline from './Timeline'; // eslint-disable-line
+import styled from 'styled-components'; // eslint-disable-line
 import {
   kick,
   snare,
@@ -32,17 +32,10 @@ const colors = {
   tom1: '#BB66BB',
   tom2: '#BB66BB',
   aux1: '#55BB66',
-  aux2: '#55BB66'
+  aux2: '#005500'
 };
 
 class Sequencer extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     time: this.props.time
-  //   };
-  // }
-
   render() {
     return (
       <div style={{ width: '950px' }}>
@@ -50,6 +43,7 @@ class Sequencer extends React.Component {
         {Object.keys(sounds).map((name, index) => {
           return (
             <div
+              key={index}
               style={{
                 borderLeft: `15px solid ${colors[name]}`,
                 marginTop: '5px'

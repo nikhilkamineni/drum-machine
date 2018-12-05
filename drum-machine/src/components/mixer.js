@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 // Mixer Styles
+// eslint-disable-next-line
 const MixerStyled = styled.div`
   color: #222222;
   input[type='range'] {
@@ -21,7 +22,25 @@ const MixerStyled = styled.div`
     animate: 0.2s;
   }
 
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    animate: 0.2s;
+    background-color: #888888;
+  }
+
   input[type='range']::-webkit-slider-thumb {
+    height: 20px;
+    width: 10px;
+    border-radius: 0px;
+    background: #11BB11;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8px;
+  }
+
+  input[type='range']::-moz-range-thumb {
     height: 20px;
     width: 10px;
     border-radius: 0px;

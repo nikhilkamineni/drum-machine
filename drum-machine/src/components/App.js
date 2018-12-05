@@ -18,7 +18,10 @@ import {
 import './App.css';
 
 /* MAIN AUDIO CONTEXT */
-const context = new AudioContext();
+const context = new AudioContext() || null;
+
+if (context)
+  console.log(context)
 
 /* MASTER GAIN NODE */
 const masterGain = context.createGain();
