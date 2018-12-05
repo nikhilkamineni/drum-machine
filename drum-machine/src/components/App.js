@@ -117,7 +117,7 @@ class App extends Component {
   componentDidMount() {
     if (!navigator.userAgent.includes('Chrome'))
       alert(
-        'This app uses the Web Audio API and is optimized for use with the Chrome browser.\n\nUsing other browsers may result in audio glitches or other undesirable results.'
+        'Please use Chrome!\n\nThis app uses the Web Audio API, which is not fully supported in all browsers yet.\n\nUsing Safari, Firefox or other browsers may result in audio glitches and/or undesirable results.'
       );
     context.suspend();
     document.addEventListener('keydown', this.keyPressHandler, false);
