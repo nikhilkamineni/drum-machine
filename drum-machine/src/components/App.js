@@ -18,10 +18,9 @@ import {
 import './App.css';
 
 /* MAIN AUDIO CONTEXT */
-const context = new AudioContext() || null;
+let AudioContext = window.AudioContext || window.webkitAudioContext;
 
-if (context)
-  console.log(context)
+const context = new AudioContext();
 
 /* MASTER GAIN NODE */
 const masterGain = context.createGain();
@@ -100,7 +99,7 @@ let timer;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 // App Component
 class App extends Component {
@@ -116,6 +115,10 @@ class App extends Component {
   };
 
   componentDidMount() {
+    if (!navigator.userAgent.includes('Chrome'))
+      alert(
+        'This app uses the Web Audio API and is optimized for use with the Chrome browser.\n\nUsing other browsers may result in audio glitches or other undesirable results.'
+      );
     context.suspend();
     document.addEventListener('keydown', this.keyPressHandler, false);
   }
@@ -231,7 +234,7 @@ class App extends Component {
     };
 
     if (event.keyCode === 32) {
-      (!this.state.playing && this.state.wasStopped) ? this.play() : this.stop();
+      !this.state.playing && this.state.wasStopped ? this.play() : this.stop();
       event.preventDefault();
     } else if (Object.keys(keys).includes(event.key)) {
       sounds[keys[event.key]](context, gains[keys[event.key]]);
@@ -272,20 +275,20 @@ class App extends Component {
           beat={this.state.currentBeat}
           togglePads={this.togglePads}
           changeSequenceLength={this.changeSequenceLength}
-          style={{marginBottom: '10px'}}
+          style={{ marginBottom: '10px' }}
         />
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           {this.state.showPads ? (
-          <SampleContainer
-            context={context}
-            gains={gains}
-            style={{marginRight: '20px'}}
-          />
+            <SampleContainer
+              context={context}
+              gains={gains}
+              style={{ marginRight: '20px' }}
+            />
           ) : null}
           {this.state.showPads ? (
             <Mixer mixerHandler={this.mixerHandler} />
